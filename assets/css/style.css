@@ -2,4 +2,69 @@ html,
 body {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: "lato", sans-serif;
+}
+.container {
+  padding: 1% 25%;
+}
+
+header {
+  height: 18vh;
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: linear-gradient(290deg, #09053b, #160e85, #161274, #08034b);
+  padding: 0 5%;
+  color: white;
+}
+header .timer {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  border: 1px solid rgb(192, 192, 192);
+  font-size: 0.9rem;
+  text-align: center;
+  padding-top: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.question {
+  margin: 1rem;
+  padding: 1rem;
+}
+#question-container {
+  min-height: 40vh;
+}
+.answers {
+  display: inline-grid;
+  margin: 1rem;
+}
+.btn {
+  margin: 0.3rem;
+  background: linear-gradient(#151055, #29228d);
+  color: rgb(230, 230, 230);
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  border: none;
+}
+.btn:hover {
+  background-color: rgb(49, 43, 136);
+}
+.btn-start {
+  padding: 0.7rem 2.5rem;
+  font-size: 1.1rem;
+}
+.result {
+  padding: 2rem;
+  text-align: center;
+  align-content: center;
+  margin-top: 2rem;
+}
+.hide {
+  display: none;
 }
