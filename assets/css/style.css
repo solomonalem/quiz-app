@@ -51,19 +51,24 @@ header .timer {
   border-radius: 0.3rem;
   cursor: pointer;
   border: none;
+  text-align: left;
 }
 .btn:hover {
+  background-color: rgb(49, 43, 136);
+}
+.btn:active {
   background-color: rgb(49, 43, 136);
 }
 .btn-start {
   padding: 0.7rem 2.5rem;
   font-size: 1.1rem;
+  margin-top: 2rem;
 }
 .result {
   padding: 2rem;
   text-align: center;
   align-content: center;
-  margin-top: 2rem;
+ 
 }
 .hide {
   display: none;
