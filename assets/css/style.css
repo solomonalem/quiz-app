@@ -9,6 +9,10 @@ body {
 .container {
   padding: 1% 25%;
 }
+h3 {
+  color: rgb(141, 141, 141);
+  font-size: 1.4rem;
+}
 
 header {
   height: 18vh;
@@ -68,8 +72,33 @@ header .timer {
   padding: 2rem;
   text-align: center;
   align-content: center;
- 
 }
 .hide {
   display: none;
 }
+
+.score-container {
+  margin: 2rem;
+  padding: 3rem 1rem;
+  text-align: left;
+  align-content: center;
+}
+.score-container input {
+  padding: 0.2rem 1rem;
+  border-radius: 0.3rem;
+  outline: hidden;
+  border: 1px solid rgb(201, 201, 201);
+  margin: 0.5rem 1rem;
+  font-size:1.2rem;
+}
+.score-container span {
+  font-size: 1.3rem;
+}
+.initials {
+    padding: 0.2rem 1rem;
+    border-radius: 0.3rem;
+    outline: hidden;
+    border: 1px solid rgb(201, 201, 201);
+    margin: 0.5rem 1rem;
+    font-size:1.2rem;
+  }

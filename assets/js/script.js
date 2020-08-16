@@ -5,6 +5,7 @@ var result = document.querySelector("#result");
 var resultValue = document.getElementById("set-result");
 var questionEl = document.querySelector("#question");
 var answerEl = document.querySelector("#answers");
+var initialEl = document.getElementById("initials");
 var score = 0;
 var currentQn = 0;
 
@@ -46,36 +47,88 @@ var resetQuestionArea = function () {
 var chooseAnswer = function (event) {
   var selectedButton = event.target;
   var correct = selectedButton.dataset.correct;
-  console.log(result);
+
   setResult(result, correct);
   currentQn++;
 
-  if (questions.length > currentQn + 1) {
-    next;
+  if (questions.length > currentQn) {
+    // Calls the nextQuestion function after 2sec
+    setTimeout(() => {
+      nextQuestion(currentQn);
+    }, 500);
+  } else {
+    storeHighScore(score);
   }
-  else{
-      
-  }
-
-  // Calls the nextQuestion function after 2sec
-  var next = setTimeout(() => {
-    nextQuestion(currentQn);
-  }, 2000);
 };
 
 var setResult = function (element, correct) {
   clearResult(element);
   if (correct) {
-    element.textContent = "correct";
+    element.innerHTML = "<h3>correct !</h3>";
     score = score + 7;
   } else {
-    element.textContent = "wrong";
+    element.innerHTML = "<h3>wrong !</h3>";
   }
 };
 
 var clearResult = function (element) {
   element.textContent = "";
 };
+var storeHighScore = function (score) {
+  questionContainer.textContent = "";
+  result.textContent = "";
+
+  // create MAIN DIV element
+  var scoreContainer = document.createElement("div");
+
+  //create h1 element
+  var scoreHeader = document.createElement("h1");
+  scoreHeader.innerText = "All done !";
+
+  //create h2 element
+  var scoreFinal = document.createElement("h2");
+
+  // displaying the score to the h2 element
+  scoreFinal.innerText = `Your final score is : ${score}`;
+
+  //create inner div elemrnt to hold the input and submit button
+  var scoreInputContainer = document.createElement("div");
+
+  initialEl.classList.remove("hide");
+  var initials = initialEl.value.trim();
+
+  // create span for the input element
+  var scoreInputLabel = document.createElement("span");
+  scoreInputLabel.innerText = "Enter Initials : ";
+
+  //create submit  button
+  var scoreInputButton = document.createElement("button");
+  scoreInputButton.innerHTML = "submit";
+  scoreInputButton.classList.add("btn");
+
+  // append the input, buttn span elements to the INNER DIV element
+  scoreInputContainer.appendChild(scoreInputLabel);
+  scoreInputContainer.appendChild(initialEl);
+  scoreInputContainer.appendChild(scoreInputButton);
+
+  // append inner div to the MAIN DIV container
+  scoreContainer.appendChild(scoreHeader);
+  scoreContainer.appendChild(scoreFinal);
+  scoreContainer.appendChild(scoreInputContainer);
+  scoreContainer.classList.add("score-container");
+
+  // APPEND TO THE PAGE  QUESTION CONTAINER
+  questionContainer.appendChild(scoreContainer);
+
+  //when submit button clicked
+  scoreInputButton.addEventListener("click", function () {
+    var initials = initialEl.value;
+
+    console.log(initials);
+  });
+};
+
+var showHighScore = function () {};
 
 var questions = [
   {
