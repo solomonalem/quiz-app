@@ -5,9 +5,13 @@ body {
   box-sizing: border-box;
   font-size: 16px;
   font-family: "lato", sans-serif;
+  background: rgb(238, 238, 238);
 }
 .container {
   padding: 1% 25%;
+
+  background: white;
+  height: 100vh;
 }
 h3 {
   color: rgb(141, 141, 141);
@@ -15,12 +19,12 @@ h3 {
 }
 
 header {
-  height: 18vh;
+  height: 17vh;
   width: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  position: relative;
   background: linear-gradient(290deg, #09053b, #160e85, #161274, #08034b);
   padding: 0 5%;
   color: white;
@@ -35,6 +39,15 @@ header .timer {
   padding-top: 2rem;
   padding-left: 1rem;
   padding-right: 1rem;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+.score h1 span {
+  color: rgb(52, 184, 173);
+  font-family: "monsterat", san-serif;
+  font-size: 2.3rem;
 }
 .question {
   margin: 1rem;
@@ -89,32 +102,45 @@ header .timer {
   outline: hidden;
   border: 1px solid rgb(201, 201, 201);
   margin: 0.5rem 1rem;
-  font-size:1.2rem;
+  font-size: 1.2rem;
 }
 .score-container span {
   font-size: 1.3rem;
 }
 .initials {
-    padding: 0.2rem 1rem;
-    border-radius: 0.3rem;
-    outline: hidden;
-    border: 1px solid rgb(201, 201, 201);
-    margin: 0.5rem 1rem;
-    font-size:1.2rem;
-  }
-  .high-score{
-      padding: 2rem;
+  padding: 0.2rem 1rem;
+  border-radius: 0.3rem;
+  outline: hidden;
+  border: 1px solid rgb(201, 201, 201);
+  margin: 0.5rem 1rem;
+  font-size: 1.2rem;
+}
+.high-score {
+  padding: 2rem;
 }
 
-  .high-score li{
-      background-color: rgb(183, 194, 224);
-      padding:.4rem 2rem;
-      font-weight:bold;
-      list-style:none;
-      margin-left:-2rem;
-  }
-  .high-score span{
-      
-      font-size:1.4rem;
-      margin-right:.4rem;
-  }
+.high-score li {
+  background-color: rgb(183, 194, 224);
+  padding: 0.4rem 2rem;
+  font-weight: bold;
+  list-style: none;
+  margin-left: -2rem;
+}
+.high-score span {
+  font-size: 1.4rem;
+  margin-right: 0.4rem;
+}
+
+/* /---media- query-======= */
+@media only screen and (max-width: 1180px) {
+    .container {
+        padding: 1% 15%;
+    }
+}
+
+
+@media only screen and (max-width: 700px) {
+    .container {
+        padding: 1% 5%;
+    }
+}

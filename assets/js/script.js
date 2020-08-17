@@ -16,11 +16,11 @@ var timeEl = document.getElementById("timer");
 var highScore = [];
 var score = 0;
 var currentQn = 0;
-
+//-------------    FUNCTION START ---------------------------------
 var startQuiz = function () {
   currentQn = 0;
   highScoreEL.classList.add("hide");
-  console.log("game started");
+
   result.textContent = "";
   questionContainer.classList.remove("hide");
   timer();
@@ -29,6 +29,7 @@ var startQuiz = function () {
 
 startBtn.addEventListener("click", startQuiz);
 
+// -------------FUNCTION NEXT-QUESTION ----------------------------
 var nextQuestion = function (currentQn) {
   resetQuestionArea();
 
@@ -48,6 +49,7 @@ var nextQuestion = function (currentQn) {
   }
 };
 
+// ------------- FUNCTION RESET QUESTION AREA ------------------------
 var resetQuestionArea = function () {
   result.textContent = "";
   while (answerEl.firstChild) {
@@ -55,6 +57,7 @@ var resetQuestionArea = function () {
   }
 };
 
+// ------- FUNCTION CHOOSE ANSWER ----------------------------------------
 var chooseAnswer = function (event) {
   var selectedButton = event.target;
   var correct = selectedButton.dataset.correct;
@@ -85,10 +88,12 @@ var setResult = function (element, correct) {
   }
 };
 
+// ------------- FUNCTION CLEAR RESULT --------------------
 var clearResult = function (element) {
   element.textContent = "";
 };
 
+// ------------  FUNCTION STORE RESULT --------------------
 var storeHighScore = function (score) {
   questionContainer.textContent = "";
   result.textContent = "";
@@ -156,7 +161,6 @@ var saveScores = function () {
   }
 
   loadScore(highScoreObject);
-  viewScore.addEventListener("click", loadHighScore);
 };
 
 var loadScore = function (highScoreObject) {
@@ -174,10 +178,10 @@ var loadScore = function (highScoreObject) {
 
 // --- TIMER FUNCTION --------
 
-var timeleft = 60;
+var timeleft = 59;
 var timer = function () {
   setInterval(function () {
-    if (timeleft <= 50) {
+    if (timeleft <= 0) {
       stopTimer();
       timeEl.innerHTML = `finished`;
     } else {
@@ -188,7 +192,6 @@ var timer = function () {
 };
 
 var stopTimer = function () {
-  console.log("stop");
   clearInterval(timer);
 };
 
@@ -257,26 +260,25 @@ var questions = [
       },
     ],
   },
+  {
+    question: "Choose the client-side JavaScript object?",
+    answers: [
+      {
+        text: "Database",
+        correct: false,
+      },
+      {
+        text: "Cursor>",
+        correct: false,
+      },
+      {
+        text: "Client",
+        correct: false,
+      },
+      {
+        text: "FileUpLoad",
+        correct: true,
+      },
+    ],
+  },
 ];
-
-//   highScoreEL.classList.remove("hide");
-//   var scoreListItem = document.createElement("li");
-
-//   for (var i = 0; i < localStorage.length; i++) {
-
-//     scoreListItem.textContent = localStorage.getItem(localStorage.key(i));
-// scoreListItem.textContent = `${i + 1}. ${localStorage.getItem(
-//   "initials"
-// )} - ${localStorage.getItem("score")}`;
-
-//   highScoreUlEl.append(scoreListItem);
-//   questionContainer.appendChild(highScoreEL);
-
-//loop through savedScore array
-//     for (var i = 0; i < savedScore.length; i++) {
-//       // pass each task object into the `createTaskEl()` function
-//       scoreListItem.textContent = localStorage.getItem(localStorage.key(i));
-//       scoreListItem.textContent = `${i + 1}. ${localStorage.getItem(
-//         "initials"
-//       )} - ${localStorage.getItem("score")}`;
-//  }

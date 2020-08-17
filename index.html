@@ -12,20 +12,22 @@
     <title>Quiz - App</title>
   </head>
   <body>
+      <!-- --header- ----- -->
     <header class="nav">
-      <div class="score" id="score">view high score</div>
+        <a href="./" class="score"> 
+            <div  id="score"><h1><span>Q</span>uiz</h1></div>
+        </a>
+     
       <div class="timer" id="timer">Time</div>
     </header>
+    <!-------- main-body ------->
     <main class="container">
       <div id="question-container" class="hide">
         <div class="question">
           <h2 id="question" >how much do you think is the value</h2>
         </div>
         <div id="answers" class="answers">
-          <!-- <button class="btn">1.halay</button>
-          <button class="btn">2</button>
-          <button class="btn">3</button>
-          <button class="btn">4</button> -->
+         
         </div>
       </div>
       <div id="result" class="result">
@@ -40,7 +42,8 @@
       <div class="high-score hide" id="high-score">
           <h1>High Score</h1>
           <ul id="high-score-ul"></ul>
-          <button id="go-back" class="btn">Go back</button>
+          <a href="./" class="btn">
+          <button id="go-back" class="btn">Go back</button></a>
           <button id="clear-score" class="btn">Clear high score</button>
       </div>
     
