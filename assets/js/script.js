@@ -10,15 +10,20 @@ var highScoreEL = document.getElementById("high-score");
 var goBack = document.getElementById("go-back");
 var clearScore = document.getElementById("clear-score");
 var highScoreUlEl = document.getElementById("high-score-ul");
+var viewScore = document.getElementById("score");
+var timeEl = document.getElementById("timer");
 
 var highScore = [];
 var score = 0;
 var currentQn = 0;
 
 var startQuiz = function () {
+  currentQn = 0;
+  highScoreEL.classList.add("hide");
   console.log("game started");
   result.textContent = "";
   questionContainer.classList.remove("hide");
+  timer();
   nextQuestion(currentQn);
 };
 
@@ -61,8 +66,11 @@ var chooseAnswer = function (event) {
     // Calls the nextQuestion function after 2sec
     setTimeout(() => {
       nextQuestion(currentQn);
-    }, 500);
+    }, 1000);
   } else {
+    //stop timer
+    stopTimer();
+    //save high score
     storeHighScore(score);
   }
 };
@@ -146,22 +154,12 @@ var saveScores = function () {
     highScore.push(highScoreObject);
     localStorage.setItem("highScore", JSON.stringify(highScore));
   }
- 
 
   loadScore(highScoreObject);
+  viewScore.addEventListener("click", loadHighScore);
 };
 
 var loadScore = function (highScoreObject) {
-  var savedScore = localStorage.getItem("highScore");
-
-  if (!savedScore) {
-    return false;
-  }
-
-  savedScore = JSON.parse(savedScore);
-
-
-
   highScoreEL.classList.remove("hide");
   var scoreListItem = document.createElement("li");
   scoreListItem.innerHTML =
@@ -174,7 +172,25 @@ var loadScore = function (highScoreObject) {
   questionContainer.appendChild(highScoreEL);
 };
 
+// --- TIMER FUNCTION --------
 
+var timeleft = 60;
+var timer = function () {
+  setInterval(function () {
+    if (timeleft <= 50) {
+      stopTimer();
+      timeEl.innerHTML = `finished`;
+    } else {
+      timeEl.innerHTML = `00:${timeleft}`;
+    }
+    timeleft -= 1;
+  }, 1000);
+};
+
+var stopTimer = function () {
+  console.log("stop");
+  clearInterval(timer);
+};
 
 var questions = [
   {
@@ -243,25 +259,24 @@ var questions = [
   },
 ];
 
+//   highScoreEL.classList.remove("hide");
+//   var scoreListItem = document.createElement("li");
 
- //   highScoreEL.classList.remove("hide");
-  //   var scoreListItem = document.createElement("li");
+//   for (var i = 0; i < localStorage.length; i++) {
 
-  //   for (var i = 0; i < localStorage.length; i++) {
+//     scoreListItem.textContent = localStorage.getItem(localStorage.key(i));
+// scoreListItem.textContent = `${i + 1}. ${localStorage.getItem(
+//   "initials"
+// )} - ${localStorage.getItem("score")}`;
 
-  //     scoreListItem.textContent = localStorage.getItem(localStorage.key(i));
-  // scoreListItem.textContent = `${i + 1}. ${localStorage.getItem(
-  //   "initials"
-  // )} - ${localStorage.getItem("score")}`;
+//   highScoreUlEl.append(scoreListItem);
+//   questionContainer.appendChild(highScoreEL);
 
-  //   highScoreUlEl.append(scoreListItem);
-  //   questionContainer.appendChild(highScoreEL);
-
-    //loop through savedScore array
-  //     for (var i = 0; i < savedScore.length; i++) {
-  //       // pass each task object into the `createTaskEl()` function
-  //       scoreListItem.textContent = localStorage.getItem(localStorage.key(i));
-  //       scoreListItem.textContent = `${i + 1}. ${localStorage.getItem(
-  //         "initials"
-  //       )} - ${localStorage.getItem("score")}`;
-  //  }
+//loop through savedScore array
+//     for (var i = 0; i < savedScore.length; i++) {
+//       // pass each task object into the `createTaskEl()` function
+//       scoreListItem.textContent = localStorage.getItem(localStorage.key(i));
+//       scoreListItem.textContent = `${i + 1}. ${localStorage.getItem(
+//         "initials"
+//       )} - ${localStorage.getItem("score")}`;
+//  }
