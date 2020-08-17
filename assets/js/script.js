@@ -85,6 +85,7 @@ var setResult = function (element, correct) {
     score = score + 7;
   } else {
     element.innerHTML = "<h3>wrong !</h3>";
+    timeleft = timeleft - 10;
   }
 };
 
@@ -183,7 +184,7 @@ var timer = function () {
   setInterval(function () {
     if (timeleft <= 0) {
       stopTimer();
-      timeEl.innerHTML = `finished`;
+      timeEl.innerHTML = `STOP`;
     } else {
       timeEl.innerHTML = `00:${timeleft}`;
     }
