@@ -15,6 +15,7 @@ application that future assetsers need to prepare for their technical interview
 - JAVASCRIPT
 
 ## Website
+https://solomonmeresa.github.io/quiz-app/
 
 ## Visuals
 
