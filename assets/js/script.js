@@ -6,6 +6,12 @@ var resultValue = document.getElementById("set-result");
 var questionEl = document.querySelector("#question");
 var answerEl = document.querySelector("#answers");
 var initialEl = document.getElementById("initials");
+var highScoreEL = document.getElementById("high-score");
+var goBack = document.getElementById("go-back");
+var clearScore = document.getElementById("clear-score");
+var highScoreUlEl = document.getElementById("high-score-ul");
+
+var highScore = [];
 var score = 0;
 var currentQn = 0;
 
@@ -74,6 +80,7 @@ var setResult = function (element, correct) {
 var clearResult = function (element) {
   element.textContent = "";
 };
+
 var storeHighScore = function (score) {
   questionContainer.textContent = "";
   result.textContent = "";
@@ -95,7 +102,6 @@ var storeHighScore = function (score) {
   var scoreInputContainer = document.createElement("div");
 
   initialEl.classList.remove("hide");
-  var initials = initialEl.value.trim();
 
   // create span for the input element
   var scoreInputLabel = document.createElement("span");
@@ -121,14 +127,54 @@ var storeHighScore = function (score) {
   questionContainer.appendChild(scoreContainer);
 
   //when submit button clicked
-  scoreInputButton.addEventListener("click", function () {
-    var initials = initialEl.value;
-
-    console.log(initials);
-  });
+  scoreInputButton.addEventListener("click", saveScores);
 };
 
-var showHighScore = function () {};
+var saveScores = function () {
+  questionContainer.textContent = "";
+  var initials = initialEl.value.trim();
+  var highScoreObject = {
+    initial: initials,
+    score: score,
+  };
+
+  if (initials === "") {
+    alert("initials cannot be blank");
+  } else {
+    // Save score and initials to localStorage and render the last registered.
+
+    highScore.push(highScoreObject);
+    localStorage.setItem("highScore", JSON.stringify(highScore));
+  }
+ 
+
+  loadScore(highScoreObject);
+};
+
+var loadScore = function (highScoreObject) {
+  var savedScore = localStorage.getItem("highScore");
+
+  if (!savedScore) {
+    return false;
+  }
+
+  savedScore = JSON.parse(savedScore);
+
+
+
+  highScoreEL.classList.remove("hide");
+  var scoreListItem = document.createElement("li");
+  scoreListItem.innerHTML =
+    "<span>" +
+    highScoreObject.initial +
+    "</span>- <span>" +
+    highScoreObject.score +
+    "</span>";
+  highScoreUlEl.append(scoreListItem);
+  questionContainer.appendChild(highScoreEL);
+};
+
+
 
 var questions = [
   {
@@ -196,3 +242,26 @@ var questions = [
     ],
   },
 ];
+
+
+ //   highScoreEL.classList.remove("hide");
+  //   var scoreListItem = document.createElement("li");
+
+  //   for (var i = 0; i < localStorage.length; i++) {
+
+  //     scoreListItem.textContent = localStorage.getItem(localStorage.key(i));
+  // scoreListItem.textContent = `${i + 1}. ${localStorage.getItem(
+  //   "initials"
+  // )} - ${localStorage.getItem("score")}`;
+
+  //   highScoreUlEl.append(scoreListItem);
+  //   questionContainer.appendChild(highScoreEL);
+
+    //loop through savedScore array
+  //     for (var i = 0; i < savedScore.length; i++) {
+  //       // pass each task object into the `createTaskEl()` function
+  //       scoreListItem.textContent = localStorage.getItem(localStorage.key(i));
+  //       scoreListItem.textContent = `${i + 1}. ${localStorage.getItem(
+  //         "initials"
+  //       )} - ${localStorage.getItem("score")}`;
+  //  }

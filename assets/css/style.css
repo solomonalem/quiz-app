@@ -101,4 +101,13 @@ header .timer {
     border: 1px solid rgb(201, 201, 201);
     margin: 0.5rem 1rem;
     font-size:1.2rem;
+  }.high-score li{
+      background-color: rgb(183, 194, 224);
+      padding:.4rem 2rem;
+      font-weight:bold;
+  }
+  .high-score span{
+      
+      font-size:1.4rem;
+      margin-right:.4rem;
   }
